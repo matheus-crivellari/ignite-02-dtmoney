@@ -1,6 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './App';
+import { createServer } from 'miragejs';
+
+createServer({
+  routes() {
+    this.namespace ='api';
+
+    this.get('/transactions', () => [
+      {
+        id: 1,
+        title: 'Transaction 1',
+        amount: 400,
+        type: 'deposit',
+        category: 'Food',
+        cretedAt: new Date(),
+      },
+    ]);
+  }
+});
 
 ReactDOM.render(
   <React.StrictMode>
