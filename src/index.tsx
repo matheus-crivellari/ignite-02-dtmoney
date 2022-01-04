@@ -38,7 +38,12 @@ createServer({
     this.get('/transactions', () => this.schema.all('transaction'));
 
     this.post('/transactions', (schema, request) => {
-      return schema.create('transaction', JSON.parse(request.requestBody));
+      const data = JSON.parse(request.requestBody);
+
+      return schema.create('transaction', {
+        ...data,
+        createdAt: new Date(),
+      });
     });
   }
 });
