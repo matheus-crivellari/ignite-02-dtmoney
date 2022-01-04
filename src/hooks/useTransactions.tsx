@@ -1,8 +1,7 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
-import { api } from "./services/api";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { api } from "../services/api";
 
 export type TransactionType = 'deposit' | 'withdraw';
-
 
 interface Transaction {
     id: number;
@@ -52,4 +51,8 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
             {children}
         </TransactionsContext.Provider>
     )
+}
+
+export function useTransactions() {
+    return useContext(TransactionsContext);
 }
