@@ -5,7 +5,7 @@ import incomeImg from '../../assets/income.svg'
 import outcomeImg from '../../assets/outcome.svg'
 import { FormEvent, useContext, useState } from 'react';
 import { api } from '../../services/api';
-import { TransactionsContext } from '../../TransactionsContext';
+import { TransactionInput, TransactionsContext, TransactionType } from '../../TransactionsContext';
 
 interface NewTransactionModalProps {
     isOpen:  boolean;
@@ -17,7 +17,7 @@ export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionMo
 
     const [title, setTitle] = useState('');
     const [amount, setAmount] = useState(0);
-    const [type, setType] = useState('deposit');
+    const [type, setType] = useState<TransactionType>('deposit');
     const [category, setCategory] = useState('');
 
     async function handleCrateNewTransaction(event: FormEvent) {

@@ -1,16 +1,19 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { api } from "./services/api";
 
+export type TransactionType = 'deposit' | 'withdraw';
+
+
 interface Transaction {
     id: number;
     title: string;
     amount: number;
-    type: string;
+    type: TransactionType;
     category: string;
     createdAt: string;
 }
 
-type TransactionInput = Omit<Transaction, 'id' | 'createdAt'>;
+export type TransactionInput = Omit<Transaction, 'id' | 'createdAt'>;
 
 interface TransactionsProviderData {
     transactions: Transaction[];
